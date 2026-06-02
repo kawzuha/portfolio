@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Gloria+Hallelujah&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fff6f9;
+  --surface: rgba(255, 255, 255, 0.72);
+  --text: #4f4252;
+  --muted: #7a687e;
+  --primary: #f8b6d2;
+  --secondary: #c8b8e8;
+  --accent: #a9d6c2;
+  --soft: #d6ecff;
+  --ring: rgba(248, 182, 210, 0.48);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: var(--bg);
+}
+
+button,
+a,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .glass {
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background: var(--surface);
+    backdrop-filter: blur(22px);
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl px-6 text-base font-bold shadow-button transition;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text);
+  }
+
+  .password-input:focus,
+  .password-input:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .button-primary:hover .cat-mascot,
+  .experience-card:hover .cat-mascot {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+
+  .icon-button {
+    @apply inline-grid h-11 w-11 place-items-center rounded-full border border-white/70 bg-white/[0.65] text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:bg-white;
+  }
+
+  .theme-dot {
+    @apply h-7 w-7 rounded-full border-2 border-white/80 shadow-sm transition sm:h-8 sm:w-8;
+  }
+
+  .theme-dot.is-active {
+    box-shadow: 0 0 0 3px var(--ring), 0 8px 16px rgba(75, 61, 92, 0.16);
+    transform: translateY(-1px);
+  }
+
+  .nav-link {
+    @apply rounded-full px-3 py-2 text-xs font-bold text-[var(--muted)] transition hover:bg-white/60 hover:text-[var(--text)] sm:px-4 sm:text-sm;
+  }
+
+  .nav-link.is-active {
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+  }
+
+  .section-shell {
+    @apply py-12 md:py-16;
+  }
+
+  .opening-title {
+    font-family: 'Gloria Hallelujah', 'Baloo 2', Inter, ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .mono-heading {
+    font-family: 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', 'Courier New', monospace;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .pill {
+    @apply inline-flex min-h-8 items-center rounded-full border border-white/75 bg-white/[0.65] px-3 py-1 text-xs font-bold text-[var(--text)] shadow-sm sm:min-h-9 sm:px-4 sm:py-1.5 sm:text-sm;
+  }
+
+  .metric {
+    @apply rounded-3xl border border-white/75 bg-white/[0.55] p-4 shadow-sm;
+  }
+
+  .metric strong {
+    @apply block text-xl font-extrabold text-[var(--text)] sm:text-2xl;
+  }
+
+  .metric span {
+    @apply mt-1 block text-sm font-semibold text-[var(--muted)];
+  }
+
+  .experience-card {
+    @apply min-h-64 rounded-[1.75rem] border border-white/75 bg-white/[0.58] p-5 shadow-soft transition focus-visible:outline-none sm:p-6;
+  }
+
+  .experience-card h3 {
+    @apply mt-6 text-xl font-extrabold text-[var(--text)] sm:text-2xl;
+  }
+
+  .experience-card p {
+    @apply mt-4 text-sm leading-7 text-[var(--muted)] sm:text-base;
+  }
+
+  .icon-orb {
+    @apply inline-grid h-14 w-14 place-items-center rounded-2xl text-[var(--text)] shadow-sm transition group-hover:rotate-3;
+    background: linear-gradient(135deg, var(--primary), var(--soft));
+  }
+
+  .timeline {
+    @apply relative grid gap-5;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.35rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 2px;
+    background: linear-gradient(var(--primary), var(--accent));
+  }
+
+  .timeline-item {
+    @apply relative grid grid-cols-[3rem_1fr] gap-4 rounded-[1.75rem] border border-white/75 bg-white/[0.58] p-5 shadow-sm md:p-7;
+  }
+
+  .timeline-dot {
+    @apply z-10 grid h-11 w-11 place-items-center rounded-full border border-white bg-[var(--primary)] text-[var(--text)] shadow-sm;
+  }
+
+  .contact-card {
+    @apply rounded-[1.5rem] border border-white/75 bg-white/[0.58] p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-soft;
+  }
+
+  .contact-card h3 {
+    @apply mt-4 text-base font-extrabold text-[var(--text)] sm:text-lg;
+  }
+
+  .contact-card a,
+  .contact-card p {
+    @apply mt-2 block break-words text-sm font-semibold text-[var(--muted)];
+  }
+
+  .copy-button {
+    @apply mt-5 inline-flex min-h-10 items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 text-sm font-bold text-[var(--text)] transition hover:bg-white;
+  }
+
+  .modal-backdrop {
+    @apply fixed inset-0 z-50 grid place-items-center bg-[rgba(79,66,82,0.28)] p-4 backdrop-blur-md;
+  }
+
+  .modal-panel {
+    @apply max-h-[88vh] w-full max-w-2xl overflow-auto rounded-[2rem] border border-white/80 bg-[var(--bg)] p-6 shadow-soft sm:p-8;
+  }
+
+  .float-charm {
+    position: absolute;
+    color: var(--muted);
+    font-weight: 800;
+    opacity: 0.22;
+    animation: charmFloat 8s ease-in-out infinite;
+  }
+
+  .card-charm,
+  .hero-charm {
+    @apply pointer-events-none absolute font-cute text-2xl font-extrabold text-[var(--muted)] opacity-30;
+  }
+
+  .hero-charm {
+    @apply hidden sm:block;
+  }
+}
+
+@keyframes charmFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(10px, -16px, 0) rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .timeline::before {
+    left: 1.1rem;
+  }
+
+  .timeline-item {
+    grid-template-columns: 2.5rem 1fr;
+  }
+}
